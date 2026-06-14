@@ -1,0 +1,60 @@
+name: Deploy to Azure App Service
+
+# Push to main -> deploy the site to the Azure Web App (jasonendres.me).
+# Also runnable on demand from the Actions tab.
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'README.md'
+      - '.gitignore'
+  workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: jasonendres-site-cgq71
+  NODE_VERSION: '20'
+
+# Avoid overlapping deploys if you push twice quickly.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://jasonendres.me
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      # The site is a zero-dependency static server, so there is nothing to
+      # install today. This step keeps the pipeline correct if dependencies
+      # are added to package.json later.
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --omit=dev --no-audit --no-fund
+          else
+            npm install --omit=dev --no-audit --no-fund
+          fi
+
+      - name: Package site
+        run: |
+          rm -rf deploy && mkdir deploy
+          cp index.html server.js package.json deploy/
+          [ -f package-lock.json ] && cp package-lock.json deploy/ || true
+          [ -d node_modules ] && cp -r node_modules deploy/ || true
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: deploy
