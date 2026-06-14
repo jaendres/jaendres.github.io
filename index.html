@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jason Endres — Software Development Director</title>
+  <meta name="description" content="Jason Endres — Software Development Director, IT leader, architect and mentor. Lifelong technologist and gamer who has been coding since age 12." />
+  <meta name="author" content="Jason Endres" />
+
+  <!-- Open Graph / social previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Jason Endres — Software Development Director" />
+  <meta property="og:description" content="IT leader, architect and mentor. Lifelong technologist and gamer, coding since age 12." />
+  <meta property="og:url" content="https://jasonendres.me" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%8C%A8%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+
+  <style>
+    :root {
+      --bg: #07080d;
+      --bg-soft: #0d0f1a;
+      --card: rgba(20, 23, 38, 0.55);
+      --card-border: rgba(120, 140, 220, 0.16);
+      --text: #e8ebf5;
+      --muted: #99a2c4;
+      --faint: #6a7299;
+      --cyan: #34e1ff;
+      --violet: #8b5cff;
+      --pink: #ff5cc8;
+      --accent-grad: linear-gradient(120deg, #34e1ff 0%, #8b5cff 50%, #ff5cc8 100%);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---------- animated background ---------- */
+    .bg-orbs { position: fixed; inset: 0; z-index: -2; overflow: hidden; }
+    .orb {
+      position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.45;
+      animation: drift 22s ease-in-out infinite;
+    }
+    .orb.cyan   { width: 46vw; height: 46vw; background: #1ca7c9; top: -12vw; left: -8vw; }
+    .orb.violet { width: 40vw; height: 40vw; background: #6d3bd6; bottom: -14vw; right: -6vw; animation-delay: -7s; }
+    .orb.pink   { width: 30vw; height: 30vw; background: #c93b8f; top: 40vh; left: 55vw; animation-delay: -14s; }
+    @keyframes drift {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33%     { transform: translate(4vw,5vh) scale(1.08); }
+      66%     { transform: translate(-3vw,-4vh) scale(0.95); }
+    }
+    .grid-overlay {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(120,140,220,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,220,0.05) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+    }
+
+    /* ---------- layout ---------- */
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(7,8,13,0.6);
+      border-bottom: 1px solid rgba(120,140,220,0.08);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
+    .brand span { background: var(--accent-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .nav-links { display: flex; gap: 26px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    @media (max-width: 560px) { .nav-links { display: none; } }
+
+    /* ---------- hero ---------- */
+    header.hero { padding: 92px 0 64px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.04em;
+      color: var(--cyan); padding: 6px 14px; border-radius: 100px;
+      border: 1px solid rgba(52,225,255,0.25); background: rgba(52,225,255,0.06);
+      margin-bottom: 28px;
+    }
+    .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.6rem, 7vw, 4.6rem);
+      line-height: 1.02; font-weight: 700; letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+    h1 .grad { background: var(--accent-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .role {
+      font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 500; color: var(--text); margin-bottom: 22px;
+    }
+    .role .at { color: var(--muted); }
+    .lede { font-size: 1.1rem; color: var(--muted); max-width: 620px; margin-bottom: 36px; }
+    .lede strong { color: var(--text); font-weight: 600; }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 13px 22px; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; transition: transform .18s, box-shadow .25s, border-color .25s;
+      border: 1px solid var(--card-border);
+    }
+    .btn svg { width: 18px; height: 18px; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #07080d; background: var(--accent-grad); border: none; box-shadow: 0 8px 30px rgba(139,92,255,0.35); }
+    .btn-primary:hover { box-shadow: 0 12px 38px rgba(139,92,255,0.5); }
+    .btn-ghost { color: var(--text); background: var(--card); }
+    .btn-ghost:hover { border-color: rgba(52,225,255,0.5); color: #fff; }
+
+    .meta-row { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 38px; color: var(--muted); font-size: 0.9rem; }
+    .meta-row span { display: inline-flex; align-items: center; gap: 8px; }
+    .meta-row svg { width: 16px; height: 16px; opacity: 0.8; }
+
+    /* ---------- sections ---------- */
+    section { padding: 56px 0; }
+    .sec-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--violet); margin-bottom: 14px;
+    }
+    h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 22px; }
+    .prose p { color: var(--muted); font-size: 1.05rem; margin-bottom: 16px; max-width: 680px; }
+    .prose strong { color: var(--text); }
+
+    /* ---------- focus cards ---------- */
+    .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 10px; }
+    @media (max-width: 620px) { .cards { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; padding: 26px;
+      backdrop-filter: blur(10px); transition: transform .2s, border-color .25s, background .25s;
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: ''; position: absolute; inset: 0; border-radius: 18px; padding: 1px;
+      background: var(--accent-grad); opacity: 0; transition: opacity .3s;
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card:hover::before { opacity: 0.7; }
+    .card .ic { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 16px; background: rgba(52,225,255,0.08); border: 1px solid rgba(52,225,255,0.18); }
+    .card .ic svg { width: 22px; height: 22px; stroke: var(--cyan); }
+    .card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 0.95rem; }
+
+    /* ---------- stats ---------- */
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 8px; }
+    @media (max-width: 620px) { .stats { grid-template-columns: 1fr; } }
+    .stat { text-align: center; padding: 28px 18px; background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; backdrop-filter: blur(10px); }
+    .stat .num { font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem; font-weight: 700; background: var(--accent-grad); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1; }
+    .stat .lab { color: var(--muted); font-size: 0.9rem; margin-top: 8px; }
+
+    /* ---------- timeline ---------- */
+    .timeline { margin-top: 12px; border-left: 2px solid rgba(120,140,220,0.18); padding-left: 26px; }
+    .tl-item { position: relative; padding-bottom: 30px; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-item::before { content: ''; position: absolute; left: -33px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--cyan); box-shadow: 0 0 10px rgba(52,225,255,0.6); }
+    .tl-when { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); }
+    .tl-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.1rem; margin: 3px 0 4px; }
+    .tl-desc { color: var(--muted); font-size: 0.95rem; }
+
+    /* ---------- contact ---------- */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(52,225,255,0.07), rgba(139,92,255,0.07));
+      border: 1px solid var(--card-border); border-radius: 24px; padding: 48px 40px; text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    .contact-card h2 { margin-bottom: 12px; }
+    .contact-card p { color: var(--muted); max-width: 480px; margin: 0 auto 28px; }
+    .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+    .social {
+      display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 12px;
+      background: var(--card); border: 1px solid var(--card-border); color: var(--text);
+      text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: transform .18s, border-color .25s, color .2s;
+    }
+    .social svg { width: 19px; height: 19px; }
+    .social:hover { transform: translateY(-2px); border-color: rgba(52,225,255,0.5); color: #fff; }
+
+    /* ---------- footer ---------- */
+    footer { padding: 40px 0 60px; text-align: center; color: var(--faint); border-top: 1px solid rgba(120,140,220,0.08); }
+    footer .wrap { color: var(--muted); font-size: 0.85rem; }
+    footer code { font-family: 'JetBrains Mono', monospace; color: var(--cyan); font-size: 0.85em; }
+
+    /* ---------- reveal animation ---------- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .orb { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orbs">
+    <div class="orb cyan"></div>
+    <div class="orb violet"></div>
+    <div class="orb pink"></div>
+  </div>
+  <div class="grid-overlay"></div>
+
+  <nav>
+    <div class="wrap">
+      <div class="brand">Jason<span>Endres</span></div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#focus">What I Do</a>
+        <a href="#journey">Journey</a>
+        <a href="#connect">Connect</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow reveal"><span class="dot"></span> Available to connect &amp; mentor</div>
+      <h1 class="reveal">Hi, I'm <span class="grad">Jason Endres</span>.</h1>
+      <div class="role reveal">Software Development Director <span class="at">@ Trek Bicycle</span></div>
+      <p class="lede reveal">
+        IT leader, architect, and mentor. I've been <strong>coding since I was 12</strong> and have spent my
+        whole life around computers and games — turning that lifelong curiosity into a career building
+        software, scaling cloud platforms, and growing the engineers around me.
+      </p>
+      <div class="cta-row reveal">
+        <a class="btn btn-primary" href="https://www.linkedin.com/in/jason-endres-96210b40/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          Connect on LinkedIn
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/jaendres" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>
+          GitHub
+        </a>
+        <a class="btn btn-ghost" href="mailto:jaendres@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          Email Me
+        </a>
+      </div>
+      <div class="meta-row reveal">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Sun Prairie, Wisconsin</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18 22 12 16 6"/><path d="M8 6 2 12 8 18"/></svg> Coding since age 12</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9.5V4a2 2 0 0 1 2-2h2"/><path d="M2 12.5A4.5 4.5 0 0 1 6.5 8h11A4.5 4.5 0 0 1 22 12.5v.5a6 6 0 0 1-6 6H8a6 6 0 0 1-6-6z"/><line x1="8" y1="13" x2="8" y2="13"/><line x1="16" y1="13" x2="16" y2="13"/></svg> Lifelong gamer</span>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="wrap reveal">
+      <div class="sec-label">// about</div>
+      <h2>Building software &amp; the people who build it</h2>
+      <div class="prose">
+        <p>
+          I'm a passionate technology leader, architect, and mentor based in the Madison, Wisconsin area.
+          As a <strong>Software Development Director at Trek Bicycle</strong>, I lead teams that design and
+          ship the platforms behind one of the world's most recognized brands.
+        </p>
+        <p>
+          My story starts long before the job titles — I wrote my first code at <strong>12 years old</strong>
+          and never stopped. Computers and games have been the constant thread through my entire life, and that
+          early obsession grew into a deep love for clean architecture, cloud technology, and solving hard
+          problems at scale.
+        </p>
+        <p>
+          I care just as much about people as I do about systems. I believe in leading by example —
+          <em>never asking my team to do something I wouldn't do myself</em> — and I've spent over a decade
+          giving back to the developer community as a co-organizer of the <strong>Madison PHP Usergroup</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="focus">
+    <div class="wrap reveal">
+      <div class="sec-label">// what i do</div>
+      <h2>Where I focus</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Engineering Leadership</h3>
+          <p>Directing development teams, setting technical vision, and creating the conditions for engineers to do their best work.</p>
+        </div>
+        <div class="card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17.5 19a4.5 4.5 0 0 0 .5-9 6 6 0 0 0-11.6-1.5A4.5 4.5 0 0 0 6.5 19z"/></svg></div>
+          <h3>Cloud &amp; Architecture</h3>
+          <p>Designing resilient, scalable systems and modernizing platforms with cloud-native and DevOps practices.</p>
+        </div>
+        <div class="card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <h3>Hands-On Development</h3>
+          <p>Still a builder at heart — fluent across the stack, with deep roots in the PHP and web ecosystem.</p>
+        </div>
+        <div class="card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></div>
+          <h3>Mentorship &amp; Community</h3>
+          <p>Growing the next generation of developers through mentoring and a decade of community organizing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats">
+    <div class="wrap reveal">
+      <div class="stats">
+        <div class="stat"><div class="num">30+</div><div class="lab">Years writing code</div></div>
+        <div class="stat"><div class="num">10+</div><div class="lab">Years organizing Madison PHP</div></div>
+        <div class="stat"><div class="num">∞</div><div class="lab">Games played &amp; bugs squashed</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="journey">
+    <div class="wrap reveal">
+      <div class="sec-label">// journey</div>
+      <h2>The path so far</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-when">Now</div>
+          <div class="tl-title">Software Development Director — Trek Bicycle</div>
+          <div class="tl-desc">Leading engineering teams, architecture, and cloud strategy for a global brand.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when">2014 — Present</div>
+          <div class="tl-title">Co-Organizer — Madison PHP Usergroup</div>
+          <div class="tl-desc">Building local developer community, hosting talks, and mentoring engineers across Wisconsin.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when">2004 — 2008</div>
+          <div class="tl-title">Herzing University — Madison</div>
+          <div class="tl-desc">Formal CS foundation, plus the Herzing College Organization of Programmers.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when">Age 12</div>
+          <div class="tl-title">Wrote my first line of code</div>
+          <div class="tl-desc">Where a lifelong love of computers, gaming, and building things began.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="connect">
+    <div class="wrap reveal">
+      <div class="contact-card">
+        <div class="sec-label" style="color:var(--cyan)">// let's connect</div>
+        <h2>Let's build something or just talk tech</h2>
+        <p>Whether it's leadership, architecture, the PHP community, or the latest game — I'm always up for a good conversation.</p>
+        <div class="social-row">
+          <a class="social" href="https://www.linkedin.com/in/jason-endres-96210b40/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            LinkedIn
+          </a>
+          <a class="social" href="https://github.com/jaendres" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>
+            GitHub
+          </a>
+          <a class="social" href="mailto:jaendres@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            Email
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      &copy; <span id="year"></span> Jason Endres · Built with <code>&lt;curiosity/&gt;</code> in Wisconsin
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (Math.min(i, 4) * 0.06) + 's';
+      io.observe(el);
+    });
+  </script>
+</body>
+</html>
