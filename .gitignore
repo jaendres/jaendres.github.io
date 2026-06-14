@@ -7,3 +7,6 @@ desktop.ini
 .idea/
 node_modules/
 .claude/
+
+# local azure helper
+.azure-appname.txt

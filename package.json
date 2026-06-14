@@ -1,0 +1,12 @@
+{
+  "name": "jasonendres-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal site for Jason Endres — served as a static site on Azure App Service (Node 20).",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
