@@ -2,7 +2,14 @@
 
 Personal site for **Jason Endres** — Software Development Director, IT leader, architect, and mentor.
 
-🔗 Live at **[jasonendres.me](https://jasonendres.me)** · served via GitHub Pages from this repo.
+🔗 Live at **[jasonendres.me](https://jasonendres.me)** · hosted on Azure App Service (app `jasonendres-site-cgq71`, resource group `tcg-business-rg`); this repo is the source of truth. GitHub Pages is no longer the host — pushing alone does NOT deploy.
+
+Deploy (zip the site and push to Azure — build the zip with `tar`, not `Compress-Archive`, so entry paths use forward slashes):
+
+```powershell
+tar.exe -a -cf site-deploy.zip -C . index.html server.js package.json blog
+az webapp deploy --resource-group tcg-business-rg --name jasonendres-site-cgq71 --src-path site-deploy.zip --type zip
+```
 
 ## Stack
 
