@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Jason Endres</title>
+  <meta name="description" content="Writing about tech, engineering leadership, and hobbies — Warhammer 40k, gaming, and whatever's on the painting desk." />
+  <meta name="author" content="Jason Endres" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Blog — Jason Endres" />
+  <meta property="og:description" content="Tech, engineering leadership, and hobby posts from Jason Endres." />
+  <meta property="og:url" content="https://jasonendres.me/blog/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%8C%A8%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <div class="bg-orbs">
+    <div class="orb cyan"></div>
+    <div class="orb violet"></div>
+  </div>
+  <div class="grid-overlay"></div>
+
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="/">Jason<span>Endres</span></a>
+      <div class="nav-links">
+        <a href="/#about">About</a>
+        <a href="/#focus">What I Do</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="/#connect">Connect</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="blog-hero">
+    <div class="wrap">
+      <div class="sec-label">// blog</div>
+      <h1 class="blog-title">Notes from the <span class="grad">workbench</span></h1>
+      <p class="blog-lede">
+        Tech, engineering leadership, and hobby time — Warhammer 40k, gaming rigs,
+        and whatever's currently on the painting desk.
+      </p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!--
+      POST LIST — newest first.
+      To add a post: copy a .post-card block, update the href, date, title,
+      summary, and tags. (The post page itself comes from _template.html.)
+    -->
+    <div class="post-list">
+      <a class="post-card" href="posts/hello-world.html">
+        <div class="when">2026-07-11</div>
+        <h2>Hello, world (again)</h2>
+        <p>Why I'm starting a blog after nearly three decades of writing code — and what to expect here: tech, leadership, and a healthy amount of Warhammer.</p>
+        <div class="tags"><span class="tag">meta</span><span class="tag">tech</span><span class="tag">hobby</span></div>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      &copy; <span id="year"></span> Jason Endres · Built with <code>&lt;curiosity/&gt;</code> in Wisconsin
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

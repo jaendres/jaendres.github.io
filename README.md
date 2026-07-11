@@ -15,6 +15,28 @@ Fonts come from Google Fonts; everything else (icons, layout, animation) is inli
 
 Just edit `index.html` and push to `main`. GitHub Pages redeploys automatically.
 
+## Blog
+
+Static blog under `blog/` — same no-build philosophy, hand-written HTML per post
+sharing `blog/blog.css`.
+
+**To write a new post:**
+
+1. Copy `blog/_template.html` to `blog/posts/<slug>.html`
+2. Replace the `POST_TITLE` / `POST_SUMMARY` / `POST_DATE` / `POST_SLUG` placeholders and write the content
+3. Add a `.post-card` entry at the top of the list in `blog/index.html`
+4. Commit and push
+
+**Comments** are powered by [giscus](https://giscus.app) — each post gets a GitHub
+Discussion on this repo, and readers comment by signing in with GitHub. One-time setup
+(until then posts show a "comments coming soon" note):
+
+1. Repo **Settings → General → Features →** enable **Discussions**
+2. Install the giscus app on this repo: https://github.com/apps/giscus
+3. Go to https://giscus.app, enter `jaendres/jaendres.github.io`, choose the
+   **Announcements** category, and copy the generated `data-category-id` into
+   `CATEGORY_ID` in `blog/comments.js`
+
 ## Local preview
 
 Open `index.html` directly in a browser, or run a tiny static server:
