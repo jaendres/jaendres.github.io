@@ -32,7 +32,7 @@ function send(res, status, headers, body) {
 
 http.createServer((req, res) => {
   let urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
-  if (urlPath === '/' || urlPath === '') urlPath = '/index.html';
+  if (urlPath === '' || urlPath.endsWith('/')) urlPath += 'index.html';
 
   // Resolve safely inside root (block path traversal).
   const filePath = path.join(root, path.normalize(urlPath));
@@ -42,6 +42,14 @@ http.createServer((req, res) => {
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
+      // Directory without trailing slash (e.g. /blog) -> its index.html.
+      const dirIndex = path.join(filePath, 'index.html');
+      if (fs.existsSync(dirIndex)) {
+        return fs.readFile(dirIndex, (e3, html) => {
+          if (e3) return send(res, 404, { 'Content-Type': 'text/plain' }, 'Not found');
+          send(res, 200, { 'Content-Type': MIME['.html'] }, html);
+        });
+      }
       // Unknown path -> fall back to the landing page.
       return fs.readFile(path.join(root, 'index.html'), (e2, html) => {
         if (e2) return send(res, 404, { 'Content-Type': 'text/plain' }, 'Not found');
